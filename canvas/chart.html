@@ -1,0 +1,478 @@
+<!doctype html>
+<html>
+<head>
+<title>jQuery Source Code Debug</title>
+<script type="text/javascript" src="jquery-1.11.2.js"></script>
+<style type="text/css">
+	.canvas1 {
+	width: 200px;
+	height: 200px;
+	display: none;
+	}
+
+
+	.canvas2 {
+	width: 200px;
+	height: 200px;
+	display: none;
+	}
+
+
+	.canvas3 {
+	width: 400px;
+	height: 400px;
+	/*display: none;*/
+	}
+	.switch {
+	width: 60px;
+	height: 30px;
+	border-radius: 15px;
+	border: 1px solid lightgray;
+	background: rgba(120,120,120,.05);
+	position: relative;
+	-webkit-transition: background 1s;
+	}
+
+
+.switch:after {
+content: " ";
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background: white;
+position: absolute;
+left: 0;
+-webkit-transition: left 1s;
+}
+
+.switch.off {
+background: rgba(120,120,120,.05);
+}
+
+
+.switch.on {
+background: rgb(143, 237, 143);
+}
+
+
+.switch.on:after {
+left: 30px;
+/*right: 0;*/
+}
+
+
+.switch.on:before {
+content: " ";
+width: 0px;
+height: 40%;
+border: 1px solid lightgray;
+position: absolute;
+left: 10px;
+top: 50%;
+transform: translateY(-50%);
+}
+
+.switch.off:before {
+content: " ";
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background: white;
+position: absolute;
+right: 5px;
+top: 50%;
+transform: translateY(-50%);
+border: 1px solid lightgray;
+}
+</style>
+</head>
+<body>
+<canvas class="canvas1"></canvas>
+<canvas class="canvas2"></canvas>
+<canvas class="canvas3 line" width=400 height=400 style="border:1px solid red;"></canvas>
+<canvas class="radar" width=400 height=400 style="border:1px solid red;"></canvas>
+<div class="switch off"></div>
+<br>
+<div class="switch on"></div>
+</body>
+<script type="text/javascript">
+
+var canvas1 = $(".canvas1")[0];
+var canvas2 = $(".canvas2")[0];
+var cxt1 = canvas1.getContext("2d");
+var cxt2 = canvas2.getContext("2d");
+var width = height = 200;
+
+
+drawCircle(cxt1, canvas1, 100, 100, 50, window.devicePixelRatio * 2);
+drawCircle(cxt2, canvas2, 100, 100, 50, 1);
+
+
+cxt1.moveTo(0, 10);
+cxt1.lineTo(400, 10);
+cxt1.lineWidth = 1;
+cxt1.strokeStyle = "red"; 
+cxt1.stroke();
+
+
+function drawCircle(ctx, canvas, x, y, r, ratio) {
+canvas.setAttribute("width", width * ratio);
+canvas.setAttribute("height", height * ratio);
+
+
+ctx.scale(ratio, ratio);
+ctx.beginPath(); 
+ctx.arc(x, y, r, 0, Math.PI*2, true);
+ctx.lineWidth = 1; 
+ctx.strokeStyle = "gray"; 
+ctx.stroke();
+ctx.closePath();
+
+
+ctx.beginPath(); 
+ctx.arc(x + 0.5, y + 0.5, r + 15, 0, Math.PI*2, false);
+ctx.lineWidth = 2; 
+ctx.strokeStyle = "red"; 
+ctx.stroke();
+ctx.closePath();
+
+
+ctx.beginPath(); 
+ctx.arc(x + 0.5, y + 0.5, r + 15, 0, Math.PI*2, true);
+ctx.lineWidth = 2; 
+ctx.strokeStyle = "red"; 
+ctx.stroke();
+ctx.closePath();
+
+
+ctx.beginPath();
+ctx.arc(x, y, r - 10, 0, Math.PI*2, true);
+ctx.stroke();
+ctx.closePath(); 
+}
+
+
+//--Animation methods
+//Easing functions adapted from Robert Penner's easing equations
+//http://www.robertpenner.com/easing/
+var easingEffects = {
+linear: function (t) {
+return t;
+},
+easeInQuad: function (t) {
+return t * t;
+},
+easeOutQuad: function (t) {
+return -1 * t * (t - 2);
+},
+easeInOutQuad: function (t) {
+if ((t /= 1 / 2) < 1) return 1 / 2 * t * t;
+return -1 / 2 * ((--t) * (t - 2) - 1);
+},
+easeInCubic: function (t) {
+return t * t * t;
+},
+easeOutCubic: function (t) {
+return 1 * ((t = t / 1 - 1) * t * t + 1);
+},
+easeInOutCubic: function (t) {
+if ((t /= 1 / 2) < 1) return 1 / 2 * t * t * t;
+return 1 / 2 * ((t -= 2) * t * t + 2);
+},
+easeInQuart: function (t) {
+return t * t * t * t;
+},
+easeOutQuart: function (t) {
+return -1 * ((t = t / 1 - 1) * t * t * t - 1);
+},
+easeInOutQuart: function (t) {
+if ((t /= 1 / 2) < 1) return 1 / 2 * t * t * t * t;
+return -1 / 2 * ((t -= 2) * t * t * t - 2);
+},
+easeInQuint: function (t) {
+return 1 * (t /= 1) * t * t * t * t;
+},
+easeOutQuint: function (t) {
+return 1 * ((t = t / 1 - 1) * t * t * t * t + 1);
+},
+easeInOutQuint: function (t) {
+if ((t /= 1 / 2) < 1) return 1 / 2 * t * t * t * t * t;
+return 1 / 2 * ((t -= 2) * t * t * t * t + 2);
+},
+easeInSine: function (t) {
+return -1 * Math.cos(t / 1 * (Math.PI / 2)) + 1;
+},
+easeOutSine: function (t) {
+return 1 * Math.sin(t / 1 * (Math.PI / 2));
+},
+easeInOutSine: function (t) {
+return -1 / 2 * (Math.cos(Math.PI * t / 1) - 1);
+},
+easeInExpo: function (t) {
+return (t === 0) ? 1 : 1 * Math.pow(2, 10 * (t / 1 - 1));
+},
+easeOutExpo: function (t) {
+return (t === 1) ? 1 : 1 * (-Math.pow(2, -10 * t / 1) + 1);
+},
+easeInOutExpo: function (t) {
+if (t === 0) return 0;
+if (t === 1) return 1;
+if ((t /= 1 / 2) < 1) return 1 / 2 * Math.pow(2, 10 * (t - 1));
+return 1 / 2 * (-Math.pow(2, -10 * --t) + 2);
+},
+easeInCirc: function (t) {
+if (t >= 1) return t;
+return -1 * (Math.sqrt(1 - (t /= 1) * t) - 1);
+},
+easeOutCirc: function (t) {
+return 1 * Math.sqrt(1 - (t = t / 1 - 1) * t);
+},
+easeInOutCirc: function (t) {
+if ((t /= 1 / 2) < 1) return -1 / 2 * (Math.sqrt(1 - t * t) - 1);
+return 1 / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1);
+},
+easeInElastic: function (t) {
+var s = 1.70158;
+var p = 0;
+var a = 1;
+if (t === 0) return 0;
+if ((t /= 1) == 1) return 1;
+if (!p) p = 1 * 0.3;
+if (a < Math.abs(1)) {
+a = 1;
+s = p / 4;
+} else s = p / (2 * Math.PI) * Math.asin(1 / a);
+return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p));
+},
+easeOutElastic: function (t) {
+var s = 1.70158;
+var p = 0;
+var a = 1;
+if (t === 0) return 0;
+if ((t /= 1) == 1) return 1;
+if (!p) p = 1 * 0.3;
+if (a < Math.abs(1)) {
+a = 1;
+s = p / 4;
+} else s = p / (2 * Math.PI) * Math.asin(1 / a);
+return a * Math.pow(2, -10 * t) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) + 1;
+},
+easeInOutElastic: function (t) {
+var s = 1.70158;
+var p = 0;
+var a = 1;
+if (t === 0) return 0;
+if ((t /= 1 / 2) == 2) return 1;
+if (!p) p = 1 * (0.3 * 1.5);
+if (a < Math.abs(1)) {
+a = 1;
+s = p / 4;
+} else s = p / (2 * Math.PI) * Math.asin(1 / a);
+if (t < 1) return -0.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p));
+return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * 1 - s) * (2 * Math.PI) / p) * 0.5 + 1;
+},
+easeInBack: function (t) {
+var s = 1.70158;
+return 1 * (t /= 1) * t * ((s + 1) * t - s);
+},
+easeOutBack: function (t) {
+var s = 1.70158;
+return 1 * ((t = t / 1 - 1) * t * ((s + 1) * t + s) + 1);
+},
+easeInOutBack: function (t) {
+var s = 1.70158;
+if ((t /= 1 / 2) < 1) return 1 / 2 * (t * t * (((s *= (1.525)) + 1) * t - s));
+return 1 / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2);
+},
+easeInBounce: function (t) {
+return 1 - easingEffects.easeOutBounce(1 - t);
+},
+easeOutBounce: function (t) {
+if ((t /= 1) < (1 / 2.75)) {
+return 1 * (7.5625 * t * t);
+} else if (t < (2 / 2.75)) {
+return 1 * (7.5625 * (t -= (1.5 / 2.75)) * t + 0.75);
+} else if (t < (2.5 / 2.75)) {
+return 1 * (7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375);
+} else {
+return 1 * (7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375);
+}
+},
+easeInOutBounce: function (t) {
+if (t < 1 / 2) return easingEffects.easeInBounce(t * 2) * 0.5;
+return easingEffects.easeOutBounce(t * 2 - 1) * 0.5 + 1 * 0.5;
+}
+};
+
+
+var requestAnimFram = (function () {
+return window.requestAnimationFrame ||
+function (callback) {
+setTimeout(callback, 1000 / 60);
+}
+})();
+
+
+function animationLoop(callback, animationSteps, animationEffect) {
+animationEffect = animationEffect instanceof Function ? animationEffect : easingEffects[animationEffect];
+var currentStep = 0;
+var animationFram = function () {
+currentStep++;
+if (currentStep <= animationSteps) {
+console.log(currentStep);
+callback(currentStep / animationSteps, animationEffect);
+requestAnimFram(animationFram);
+} else {
+// Complete animation
+}
+};
+
+
+requestAnimFram(animationFram);
+}
+
+
+function clear(cxt3) {
+cxt3.clearRect(0, 0, 400, 400);
+}
+
+
+
+var canvas3 = $(".line")[0];
+var cxt3 = canvas3.getContext("2d");
+var data = [40, 80, 320, 200, 160, 240, 120];
+var width = 400;
+var height = 400;
+var padding = 20;
+var i = 0,
+j = 0,
+x = 0,
+y = 0;
+
+
+function drawLinePoint(data, animationDecimal, animationEffect) {
+cxt3.save();
+cxt3.translate(0, 400);
+animationDecimal = typeof animationDecimal === 'undefined' ? 1 : animationDecimal;
+cxt3.lineWidth = 1;
+for (i = 0; i < data.length; i++) {
+x = (padding + i * (width / data.length)) * 1;
+y = -data[i] * animationEffect(animationDecimal);
+cxt3.beginPath();
+cxt3.arc(x, y, 5, 0, Math.PI * 2, true);
+cxt3.fill();
+cxt3.closePath();
+}
+cxt3.restore();
+}
+
+
+function drawLine(data, animationDecimal, animationEffect) {
+cxt3.save();
+cxt3.translate(0, 400);
+animationDecimal = typeof animationDecimal === 'undefined' ? 1 : animationDecimal;
+for (i = 0; i < data.length; i++) {
+x = (padding + i * (width / data.length)) * 1;
+y = -data[i] * animationEffect(animationDecimal);
+if (i === 0) {
+cxt3.moveTo(x, y);
+console.log("moveTo", x, y);
+} else {
+cxt3.lineTo(x, y);
+console.log(x, y);
+cxt3.stroke();
+}
+}
+cxt3.restore();
+}
+
+
+animationLoop(function (animationDecimal, animationEffect) {
+clear(cxt3);
+drawLinePoint(data, animationDecimal, animationEffect);
+drawLine(data, animationDecimal, animationEffect);
+}, 60, 'easeInOutBounce');
+
+
+
+var radar = $(".radar")[0];
+var cxt4 = radar.getContext("2d");
+var degree = Math.PI * 2 / 7;
+var steps = 3;
+var radius = 150;
+var labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+var data = [30, 50, 80, 100, 60, 120, 70];
+
+
+function drawScale() {
+cxt4.save();
+cxt4.lineWidth = 1; 
+cxt4.strokeStyle = "gray"; 
+cxt4.translate(200, 200);
+for (var j = 1; j <= steps; j++) {
+for (var i = 0; i < labels.length; i++) {
+if (j === 1) {
+cxt4.fillText(labels[i], 0, -radius);
+}
+cxt4.beginPath(); 
+cxt4.moveTo(0, 0);
+cxt4.lineTo(0, -radius * (j / steps));
+cxt4.rotate(degree);
+cxt4.lineTo(0, -radius * (j / steps));
+cxt4.stroke();
+cxt4.closePath();
+}
+}
+cxt4.restore();
+}
+
+
+function drawData(data, animationDecimal, animationEffect) {
+animationDecimal = typeof animationDecimal === 'undefined' ? 1 : animationDecimal;
+cxt4.save();
+cxt4.translate(200, 200);
+cxt4.lineWidth = 2; 
+cxt4.strokeStyle = "rgba(150,150,150,.5)"; 
+cxt4.fillStyle = "lightgreen"; 
+cxt4.rotate(0);
+for (i = 0; i < data.length; i++) {
+cxt4.beginPath();
+cxt4.arc(0, -data[i] * animationEffect(animationDecimal), 5, 0, Math.PI*2, true);
+cxt4.fill();
+cxt4.closePath();
+cxt4.rotate(degree);
+}
+
+
+cxt4.rotate(0);
+cxt4.fillStyle = "rgba(120,120,120,.1)"; 
+cxt4.beginPath();
+cxt4.moveTo(0, -data[0]);
+for (i = 0; i < data.length; i++) {
+cxt4.rotate(degree);
+cxt4.lineTo(0, -data[(i + 1) % data.length] * animationEffect(animationDecimal));
+}
+cxt4.stroke();
+cxt4.closePath();
+cxt4.fill();
+cxt4.restore();
+}
+
+
+// drawScale();
+// drawData(data);
+animationLoop(function (animationDecimal, animationEffect) {
+clear(cxt4);
+drawScale();
+drawData(data, animationDecimal, animationEffect);
+}, 60, 'easeInOutElastic');
+
+
+$(".switch").on("click", function (oEvt) {
+console.log($(this));
+$(this).toggleClass("on").toggleClass("off");
+});
+
+
+</script>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf8" />
+	<style type="text/css">
+		.custom-radio {
+			position: relative;
+			margin: 0;
+			padding: 0;
+		}
+		.custom-radio:checked:before {
+			content: '';
+			position: absolute;
+			top: -1px;
+			left: -2px;
+			width: 14px;
+			height: 14px;
+			border-radius: 50%;
+			background-color: #ae5da1;
+		}
+
+		.custom-radio:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+			width: 4px;
+			height: 4px;
+			border-radius: 50%;
+			background-color: #fff;
+		}
+
+		.custom-radio:before {
+			background-color: #fff;
+			border: 1px solid #ddd;
+		}
+
+		.dropdown-list {
+			margin-top: 50px;
+			width: 100px;
+			position: relative;
+			height: 30px;
+			background: url(./img/colorfull.jpg) no-repeat;
+		}
+
+		.dropdown-list:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			width: 20px;
+			background-color: red;
+		} 
+
+		select,option {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #F07575; /* fallback color if gradients are not supported */ /* For Chrome and Safari */ /* For old Fx (3.6 to 15) */ /* For pre-releases of IE 10*/ /* For old Opera (11.1 to 12.0) */ 
+    background-image: url(./img/suipian.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4); /* Standard syntax; must be last */
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: #555;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+select:hover {
+	background-color: red;
+}
+select>option:hover
+    {
+        color: #1B517E;
+        cursor: pointer;
+    }
+
+    .custom-checkbox {
+    	position: relative;
+    }
+
+    .custom-checkbox:before {
+    	content: '';
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+    	background-color: #fff;
+    	border-radius: 2px;
+    	border: 1px solid #ddd;
+    }
+
+    .custom-checkbox:checked:before {
+    	background-color: #ae5da1;
+    	border-color: #ae5da1;
+    }
+    .custom-checkbox:checked:after {
+    	content: '';
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    font-size: 13px;
+	    color: #fff;
+	    border-width: 0px 2px 2px 0px;
+	    border-style: solid;
+	    border-color: #fff;
+	    width: 4px;
+	    height: 9px;
+	    -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+	    left: 4px;
+	    top: 0px;
+    }
+
+	.custom-file-upload {
+		position: relative;
+		height: 30px;
+		line-height: 30px;
+		outline: 0;
+		color: transparent;
+	}
+
+	.custom-file-upload:before {
+		content: 'select a file';
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: #666;
+		width: calc(100% - 90px);
+		border: 1px solid #ddd;
+		background-color: #fff;
+		padding-left: 5px;
+		box-sizing: border-box;
+	}
+
+	.custom-file-upload:after {
+		content: '选择文件';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 80px;
+		border: 1px solid #ae5da1;
+		background-color: #fff;
+		color: #ae5da1;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 2px;
+	}
+
+	.custom-file-upload:hover:after {
+		background-color: #ae5da1;
+		color: #fff;
+	}
+
+	.custom-upload-box {
+		position: relative;
+		height: 30px;
+		line-height: 30px;
+		width: 290px;
+	}
+
+	.custom-upload-box input[type="file"] {
+		outline: none;
+		width: 200px;
+		border: 0;
+		position: absolute;
+		top: 0;
+		height: 30px;
+		width: 80px;
+		right: 0;
+		box-sizing: border-box;
+	}
+
+	.custom-upload-box input[type="file"]:after {
+		content: '选择文件';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 80px;
+		border: 1px solid #ae5da1;
+		background-color: #fff;
+		color: #ae5da1;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 2px;
+		box-sizing: border-box;
+		line-height: 30px;
+	}
+
+	.custom-upload-box input[type="file"]:hover:after {
+		background-color: #ae5da1;
+		color: #fff;
+	}
+
+	.custom-upload-box .select-file-btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 80px;
+		border: 1px solid #ae5da1;
+		background-color: #fff;
+		color: #ae5da1;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 2px;
+	}
+
+	.custom-upload-box .select-file-btn:hover {
+		background-color: #ae5da1;
+		color: #fff;
+	}
+
+	.custom-upload-box > div {
+		border: 1px solid #ddd;
+		width: calc(100% - 90px);
+		color: #333;
+		background-color: #fff;
+		height: 100%;
+		padding-left: 5px;
+		box-sizing: border-box;
+	}
+
+	</style>
+</head>
+<body>
+
+	<div class="custom-upload-box">
+		<div>Select a file</div>
+		<!-- <span class="select-file-btn va-btn"></span> -->
+		<input type="file" />
+	</div>
+
+	<input type="date" min="2015-12-29" />
+
+	<input type="file" class="custom-file-upload"/>
+	
+	<input type="radio" name="radio1" class="custom-radio"/>
+	<input type="radio" name="radio1" class="custom-radio"/>
+
+	<input type="checkbox" class="custom-checkbox"/>
+
+	<input type="checkbox" />
+
+	<input type="radio" />
+
+	<select class="dropdown-list">
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+		<option>1</option>
+	</select>
+
+	<input requred />
+</body>
+</html>

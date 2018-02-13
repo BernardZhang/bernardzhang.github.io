@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Datalist</title>
+	<link rel="prerender" href="http://google.com">
+	<style type="text/css">
+		input {
+			position: absolute;
+			top: 40%;
+			left: 30%;
+		}
+	</style>
+
+</head>
+<body>
+	<input type="text" name="" list="datalist">
+	<datalist>
+		<option>Hello world</option>
+		<option>Hello world</option>
+		<option>Hello world</option>
+		<option>Hello world</option>
+		<option>Hello world</option>
+	</datalist>
+
+	<a href="http://baidu.com">BAIDU</a>
+	<a href="http://google.com">GOOGLE</a>
+	<script type="text/javascript">
+		var img = document.createElement('embed');
+		var iframe = document.createElement('iframe');
+
+		iframe.onload = function () {
+			alert('iframe onload');
+		};
+
+		iframe.src = 'img1/5637265f6af80.pdf';
+
+		iframe.onerror = function () {
+			alert('iframe onerror');
+		};
+
+		img.type = "application/pdf";
+
+		img.onload = function () {
+			console.log('onload', arguments);
+			alert('onload');
+		};
+
+		img.onreadystatechange = function () {
+			alert('onreadystatechange');
+		};
+
+		img.onerror = function () {
+			alert('onerror');
+		};
+
+		img.src = 'img/5637265f6af80.pdf';
+
+		document.body.appendChild(img);
+		document.body.appendChild(iframe);
+	</script>
+</body>
+</html>

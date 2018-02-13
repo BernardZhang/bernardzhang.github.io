@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Display Flex</title>
+	<style>
+		.flex {
+			display: flex;
+			padding: 0 100px 0 200px;
+		}
+
+		.flex > div {
+			/*flex: 1;*/
+		}
+		.col1 {
+			background-color: yellow;
+			/*padding: 0 0 0 100px;*/
+			box-sizing: border-box;
+			width: 100px;
+		}
+		.col2 {
+			background-color: green;
+			flex: 1;
+		}
+		.col3 {
+			background-color: gray;
+			flex: 3;
+		}
+
+		ul.flex {
+			padding: 0;
+			list-style: none;
+			display: block;
+			white-space: nowrap;
+		}
+		ul.flex li {
+			flex: 1;
+			display: inline-block;
+			width: 25%;
+			white-space: nowrap;
+		}
+		ul.flex li:nth-child(2n) {
+			background-color: red;
+		}
+
+		.scale-circle {
+			width: 20vw;
+			border: 1px solid red;
+		}
+
+		.scale-circle:after {
+			display: block;
+			content: '';
+			padding-top: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="flex">
+		<div class="col1">Col one</div>
+		<div class="col2">Col two</div>
+		<div class="col3">Col three</div>
+	</div>
+
+	<ul class="flex">
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+	</ul>
+
+
+	<div class="scale-circle"></div>
+</body>
+</html>

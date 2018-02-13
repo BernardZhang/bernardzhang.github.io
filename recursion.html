@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	var data = [
+		{
+			id: 1,
+			children: [
+				{ 
+					id: 11, 
+					children: [
+						{
+							id: 111,
+							children: [
+								{
+									id: 1111,
+									children: [
+										{
+											id: 11111,
+											children: [
+												{
+													id: 111111
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					] 
+				},
+				{ 
+					id: 12, 
+					children: [] 
+				}
+			]
+		},
+		{
+			id: 2,
+			children: [
+				{ id: 21, children: [] },
+				{ id: 22, children: [] }
+			]
+		}
+	];
+
+	var getDepth = function (tree) {
+		var depth = [];
+
+		if (!tree.children || tree.children.length === 0) {
+			return 1;
+		} else {
+			for (var i = 0; i < tree.children.length; i++) {
+				depth[i] = getDepth(tree.children[i]);
+			}
+			return Math.max.apply(Math, depth) + 1;
+		}
+	};
+	console.log('depth:' + getDepth(data[0]));
+	console.log('depth:' + getDepth(data[1]));
+
+	// 深度优先遍历
+	var findChildrenTagByDeep = function (id, tags) {
+		var tag = null;
+
+		for (var i = 0; i < tags.length; i++) {
+            if (tags[i].id == id) {
+            	tag = tags[i];
+            } else {
+            	tag = findChildrenTagByDeep(id, tags[i].children || []);
+            }
+
+            if (tag) {
+            	return tag;
+            }
+        }
+
+        return tag;
+    };
+    // 广度优先遍历
+    var findTagByWide = function (id, tags) {
+    	var tag = null,
+    	    level = 0,
+    	    index = 0;
+
+    	for (var i = 0; i < tags.length; i++) {
+    		if (tags[i].id == id) {
+    			tag = tags[i];
+    			break;
+    		}
+    		level++;
+    	}
+
+    	if (tag) {
+    		return tag;
+    	} else {
+    		return findTagByWide(id, tags[index++].children || []);
+    	}
+    };
+
+    // 查找level
+    var getMaxLevelByTag = function (level, tag) {
+    	level = level || 1;
+
+    	while (tag.children && tag.children.length) {
+    		level++;
+
+    		for (var i = 0; i < tag.children.length; i++) {
+    			level = getMaxLevelByTag(level, tag.children[i]);
+    		}
+    	}
+
+    	return level;
+    };
+    console.log(findChildrenTagByDeep(1, data));
+    console.log(findChildrenTagByDeep(11, data));
+    console.log(findChildrenTagByDeep(111, data));
+
+    console.log(findChildrenTagByDeep(12, data));
+    console.log(findChildrenTagByDeep(3, data));
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.container {
+			width: 600px;
+			height: 600px;
+		}
+		.colorfull {
+			width: 1500px;
+			height: 1500px;
+			border-radius: 50%;
+			background-color: green;
+			background-image: url(img/colorfull.jpg);
+			background-repeat: no-repeat;
+			background-size: 100%;
+			position: relative;
+			left: -200px;
+			top: -200px;
+		}
+		.outline {
+		    width: 400px;
+		    height: 400px;
+		    border-radius: 50%;
+		    background-image: url(img/opacity.png);
+		    background-size: 100%;
+		    position: absolute;
+		    left: 100px;
+		    top: 100px;
+		    z-index: 3;
+		}
+
+		.colorfull-parent {
+		    width: 600px;
+		    height: 600px;
+		    overflow: hidden;
+		    position: absolute;
+		    z-index: 0;
+		    border-radius: 50%;
+		    left: 0;
+		    top: 0;
+		    z-index: 0;
+		}
+
+		.cycle {
+			animation: cycle 10s linear infinite;
+		}
+
+		.suipian-parent {
+			position: absolute;
+			z-index: 1;
+			width: 600px;
+			height: 600px;
+			left: 0;
+			top: 0;
+		}
+
+		.suipian {
+			width: 600px;
+			height: 600px;
+			background-image: url(img/suipian.png);
+			background-repeat: no-repeat;
+			background-position: -108px -1065px;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+
+		.colorfull-parent.small {
+			width: 400px;
+			height: 400px;
+			z-index: 2;
+			left: 100px;
+			top: 100px;
+		}
+
+		@keyframes cycle {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="outline"></div>
+		
+		<div class="colorfull-parent small">
+			<div class="colorfull cycle"></div>
+		</div>
+
+		<div class="suipian-parent">
+			<div class="suipian cycle"></div>
+		</div>
+
+		<div class="colorfull-parent">
+			<div class="colorfull cycle"></div>
+		</div>
+	</div>
+</body>
+</html>

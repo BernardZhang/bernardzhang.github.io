@@ -1,0 +1,379 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.index-page .b-advantages>ul li {
+		    position: relative;
+		    border: 1px solid #c9c9c9;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		    float: left;
+		    text-align: center;
+		    width: 390px;
+		    height: 340px;
+		}
+
+		.index-page .b-advantages>ul li .b-vertical-mid_line {
+		    width: 100%;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    line-height: 320px;
+		}
+
+		.b-vertical-mid_line {
+			height: 100%;
+		}
+		.b-vertical-mid_line>* {
+		    display: inline-block;
+		    vertical-align: middle;
+		    line-height: 1.2;
+		}
+
+		.index-page .b-advantages>ul li:hover:after,.index-page .b-advantages>ul li:hover:before {
+		    color: #000;
+		    -webkit-transition: all 1ms ease-in 1s;
+		    transition: all 1ms ease-in 1s
+		}
+
+		.index-page .b-advantages>ul li:hover header {
+		    opacity: 0;
+		    visibility: hidden;
+		    -webkit-transition: all .105s ease;
+		    transition: all .105s ease
+		}
+
+		.index-page .b-advantages>ul li:hover header h2 {
+		    padding-top: 250px;
+		    -webkit-transition: padding-top .105s ease-in;
+		    transition: padding-top .105s ease-in
+		}
+
+		.index-page .b-advantages>ul li:hover header h2:after {
+		    top: 20%;
+		    -webkit-transition: top .105s ease-in;
+		    transition: top .105s ease-in
+		}
+
+		.index-page .b-advantages>ul li:hover article {
+		    top: 0;
+		    opacity: 1;
+		    visibility: visible;
+		    -webkit-transition: top .56s ease .14s,opacity 1ms ease .14s;
+		    transition: top .56s ease .14s,opacity 1ms ease .14s
+		}
+
+		.index-page .b-advantages>ul li:hover article h2 {
+		    -webkit-transition: all .56s ease .14s;
+		    transition: all .56s ease .14s
+		}
+
+		.index-page .b-advantages>ul li:hover .decorate_bottom-line {
+		    width: 100%;
+		    margin-left: -50%;
+		    -webkit-transition: all .392s ease-in;
+		    transition: all .392s ease-in
+		}
+
+		.decorate_bottom-line {
+			width: 100px;
+			margin-left: -50px;
+		}
+
+		.index-page .b-advantages>ul li:hover .decorate_left-line:before,.index-page .b-advantages>ul li:hover .decorate_right-line:before {
+		    background-color: #000;
+		    -webkit-transition: all 1ms ease-in .392s;
+		    transition: all 1ms ease-in .392s
+		}
+
+		.index-page .b-advantages>ul li:hover .decorate_left-line:after,.index-page .b-advantages>ul li:hover .decorate_right-line:after {
+		    height: 100%;
+		    -webkit-transition: all .392s .392s;
+		    transition: all .392s .392s;
+		}
+
+		.index-page .b-advantages>ul li:hover .decorate_top-left-line:before,.index-page .b-advantages>ul li:hover .decorate_top-right-line:before {
+		    background-color: #000;
+		    -webkit-transition: all 1ms ease-in .784s;
+		    transition: all 1ms ease-in .784s
+		}
+
+		.index-page .b-advantages>ul li:hover .decorate_top-left-line:after,.index-page .b-advantages>ul li:hover .decorate_top-right-line:after {
+		    width: 50%;
+		    -webkit-transition: all .336s .784s;
+		    transition: all .336s .784s
+		}
+
+		.index-page .b-advantages>ul li .decorate_bottom-line {
+		    height: 1px;
+		    position: absolute;
+		    left: 50%;
+		    bottom: -1px;
+		    z-index: 1;
+		    background-color: #000;
+		    -webkit-transition: all .392s .728s;
+		    transition: all .392s .728s;
+		}
+
+		.index-page .b-advantages>ul li .decorate_bottom-line:after,.index-page .b-advantages>ul li .decorate_bottom-line:before {
+		    content: "";
+		    width: 3px;
+		    height: 3px;
+		    position: absolute;
+		    top: -1px;
+		    background-color: #000
+		}
+
+		.index-page .b-advantages>ul li .decorate_bottom-line:before {
+		    left: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_bottom-line:after {
+		    right: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line,.index-page .b-advantages>ul li .decorate_right-line {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    left: 0;
+		    top: 0
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:after,.index-page .b-advantages>ul li .decorate_left-line:before,.index-page .b-advantages>ul li .decorate_right-line:after,.index-page .b-advantages>ul li .decorate_right-line:before {
+		    content: "";
+		    position: absolute;
+		    bottom: 0;
+		    background-color: #000;
+		    -webkit-transition: all .5s ease-in .5s;
+		    transition: all .5s ease-in .5s
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:before,.index-page .b-advantages>ul li .decorate_right-line:before {
+		    height: 3px;
+		    width: 3px;
+		    bottom: -2px;
+		    -webkit-transition: all 1ms ease-in .336s;
+		    transition: all 1ms ease-in .336s;
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:after,.index-page .b-advantages>ul li .decorate_right-line:after {
+		    height: 0;
+		    width: 1px;
+		    -webkit-transition: all .392s ease-in .336s;
+		    transition: all .392s ease-in .336s;
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:before {
+		    left: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:after {
+		    left: -1px
+		}
+
+		.index-page .b-advantages>ul li .decorate_right-line:before {
+		    right: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_right-line:after {
+		    right: -1px
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line,.index-page .b-advantages>ul li .decorate_top-right-line {
+		    width: 100%;
+		    height: 1px;
+		    position: absolute;
+		    top: 0
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line:after,.index-page .b-advantages>ul li .decorate_top-left-line:before,.index-page .b-advantages>ul li .decorate_top-right-line:after,.index-page .b-advantages>ul li .decorate_top-right-line:before {
+		    content: "";
+		    position: absolute
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line:before,.index-page .b-advantages>ul li .decorate_top-right-line:before {
+		    height: 3px;
+		    width: 3px;
+		    top: -2px;
+		    -webkit-transition: all 1ms ease-in .336s;
+		    transition: all 1ms ease-in .336s;
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line:after,.index-page .b-advantages>ul li .decorate_top-right-line:after {
+		    width: 0;
+		    height: 1px;
+		    top: -1px;
+		    -webkit-transition: all .336s ease-in;
+		    transition: all .336s ease-in;
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line:before {
+		    left: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-left-line:after {
+		    left: 0
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-right-line:before {
+		    right: -2px
+		}
+
+		.index-page .b-advantages>ul li .decorate_top-right-line:after {
+		    right: 0
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:before,.index-page .b-advantages>ul li .decorate_right-line:before,.index-page .b-advantages>ul li .decorate_top-left-line:before,.index-page .b-advantages>ul li .decorate_top-right-line:before {
+		    background-color: #c9c9c9
+		}
+
+		.index-page .b-advantages>ul li .decorate_left-line:after,.index-page .b-advantages>ul li .decorate_right-line:after,.index-page .b-advantages>ul li .decorate_top-left-line:after,.index-page .b-advantages>ul li .decorate_top-right-line:after {
+		    background-color: #000
+		}
+
+		.index-page .b-advantages>ul section {
+		    width: 100%;
+		    height: 100%;
+		    position: relative;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		    overflow: hidden;
+		    z-index: 1;
+		    padding: 30px;
+		}
+
+		.index-page .b-advantages>ul section .info-block {
+		    width: 100%;
+		    height: 100%;
+		    position: relative
+		}
+
+		.index-page .b-advantages>ul section .block_vertical-mid {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    left: 0;
+		    top: 0
+		}
+
+		.index-page .b-advantages>ul section h2 {
+		    text-transform: uppercase
+		}
+
+		.index-page .b-advantages>ul li:nth-child(1) header h2:after {
+		    background-position: 0 -290px
+		}
+
+		.index-page .b-advantages>ul li:nth-child(2) header h2:after {
+		    background-position: -120px -290px
+		}
+
+		.index-page .b-advantages>ul li:nth-child(3) header h2:after {
+		    background-position: -240px -290px
+		}
+
+		.index-page .b-advantages>ul li:nth-child(4) header h2:after {
+		    background-position: -360px -290px
+		}
+
+		.index-page .b-advantages>ul header {
+		    width: 100%;
+		    opacity: 1;
+		    visibility: visible;
+		    -webkit-transition: opacity 1ms ease .504s;
+		    transition: opacity 1ms ease .504s;
+		}
+
+		.index-page .b-advantages>ul header h2 {
+		    position: relative;
+		    color: #000;
+		    -webkit-transition: all .084s ease-in .504s;
+		    transition: all .084s ease-in .504s;
+		    padding-top: 180px;
+		}
+
+		.index-page .b-advantages>ul header h2:after {
+		    content: "";
+		    width: 110px;
+		    height: 110px;
+		    position: absolute;
+		    left: 50%;
+		    top: 30%;
+		    margin: -55px 0 0 -55px;
+		    border: 1px solid red;
+		    background-image: url(../media/images/layout/sprites/sprite_common.png);
+		    background-size: 860px 400px;
+		    background-repeat: no-repeat;
+		    -webkit-transition: top .084s ease-in .504s;
+		    transition: top .084s ease-in .504s;
+		}
+
+		.index-page .b-advantages>ul article {
+		    position: relative;
+		    opacity: 0;
+		    visibility: hidden;
+		    -webkit-transition: top .392s ease-in .056s,opacity .252s ease-in .126s;
+		    transition: top .392s ease-in .056s,opacity .252s ease-in .126s;
+		    top: -50px;
+		}
+
+		.index-page .b-advantages>ul article h2 {
+		    color: #25cf87;
+		    -webkit-transition: all .392s ease-in .056s;
+		    transition: all .392s ease-in .056s;
+		    margin-bottom: 285px;
+		}
+
+		.index-page .b-advantages>ul li:hover article h2 {
+		    margin-bottom: 60px;
+		}
+
+		.index-page .b-advantages>ul article p {
+		    -webkit-transition: all .392s ease-in .056s;
+		    transition: all .392s ease-in .056s;
+		}
+
+		.index-page .b-advantages>ul li:hover article {
+		    top: 0;
+		    opacity: 1;
+		    visibility: visible;
+		    -webkit-transition: top .56s ease .14s,opacity 1ms ease .14s;
+		    transition: top .56s ease .14s,opacity 1ms ease .14s;
+		}
+
+		   
+	</style>
+</head>
+
+<body class="index-page">
+	<div class="b-advantages">
+
+	<ul class="clfx">
+		<li>
+			<section>
+				<div class="info-block">
+					<div class="b-vertical-mid_line">
+						<header>
+							<h2>analytics &amp;<br> ux design</h2>
+						</header>
+					</div>
+					<div class="b-vertical-mid_line">
+						<article>
+							<h2>analytics &amp;<br> ux design</h2>
+							<p>Designing new interfaces we have a target to make it useful and simple. Also we offer usability audit services.</p>
+						</article>
+					</div>
+				</div>
+			</section>
+			<div class="decorate_top-right-line"></div>
+			<div class="decorate_top-left-line"></div>
+			<div class="decorate_bottom-line"></div>	
+			<div class="decorate_right-line"></div>
+			<div class="decorate_left-line"></div>
+		</li>
+	</ul>
+	</div>
+</body>
+</html>

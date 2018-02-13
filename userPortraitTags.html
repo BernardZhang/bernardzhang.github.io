@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link rel="shortcut icon" type="image/ico" href="img/colorfull.jpg" /> <!-- 添加 favicon icon -->
+	<meta name="apple-mobile-web-app-title" content="测试桌面标题">
+	<meta name="apple-mobile-web-app-capable" content="yes" /> <!-- 是否启用 WebApp 全屏模式 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> <!-- 设置状态栏的背景颜色，只有在 `"apple-mobile-web-app-capable" content="yes"` 时生效 -->
+	<meta name="format-detection" content="telephone=no" /> <!-- 禁止数字识自动别为电话号码 -->
+	<link rel="apple-touch-icon-precomposed" href="img/colorfull.jpg" /> <!-- iPhone 和 iTouch，默认 57x57 像素，必须有 -->
+	<link rel="apple-touch-startup-image" sizes="640x1136" href="img/640.png" /> <!-- iPad 竖屏 768 x 1004（标准分辨率） -->
+	<meta name="apple-itunes-app" content="app-id=http://itunes.apple.com/cn/app/id395096736, affiliate-data=myAffiliateData, app-argument=myURL"> <!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
+	
+	<meta name="format-detection" content="telphone=no, email=no" /><!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+	<!-- 启用360浏览器的极速模式(webkit) -->
+	<meta name="renderer" content="webkit">
+	<!-- 避免IE使用兼容模式 -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 -->
+	<meta name="HandheldFriendly" content="true">
+	<!-- 微软的老式浏览器 -->
+	<meta name="MobileOptimized" content="320">
+	<!-- uc强制竖屏 -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- QQ强制竖屏 -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- UC强制全屏 -->
+	<meta name="full-screen" content="yes">
+	<!-- QQ强制全屏 -->
+	<meta name="x5-fullscreen" content="true">
+	<!-- UC应用模式 -->
+	<meta name="browsermode" content="application">
+	<!-- QQ应用模式 -->
+	<meta name="x5-page-mode" content="app">
+	<!-- windows phone 点击无高光 -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- 适应移动端end -->
+	<style type="text/css">
+		html {
+			/*border: 1px solid red;*/
+			/*width: 1200px;*/
+		}
+		body {
+			border: 1px solid red;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			/*font-size: 20px;*/
+		}
+		div {
+			width: 60%;
+			border: 1px solid green;
+		}
+		ul {
+			width: 100%;
+			/*border: 1px solid #ddd;*/
+			list-style: none;
+			margin: 0;
+			/*padding: 10px;*/
+			padding: 0;
+		}
+
+		ul > li {
+			display: inline-block;
+			padding: 0 10px;
+			line-height: 32px;
+			margin-right: 10px;
+			border-radius: 2px;
+			border: 1px solid #ddd;
+			margin-bottom: 10px;
+		}
+	</style>
+	
+</head>
+<body>
+	<div>13524482147</div>
+	<div>
+		<span>基本标签</span>
+		<ul>
+			<li>个护美容</li>
+			<li>书籍阅读</li>
+			<li>休闲爱好</li>
+			<li>体育健身</li>
+			<li>公益</li>
+			<li>医疗健康</li>
+			<li>商务服务</li>
+		</ul>
+	</div>
+	<div><span>兴趣爱好<span> > <span>个护美容</span></div>
+	<ul>
+		<li>个护美容</li>
+		<li>书籍阅读</li>
+		<li>休闲爱好</li>
+		<li>体育健身</li>
+		<li>公益</li>
+		<li>医疗健康</li>
+		<li>商务服务</li>
+		<li>婚恋交友</li>
+		<li>家电数码</li>
+		<li>建材家居</li>
+		<li>影视音乐</li>
+		<li>房产</li>
+		<li>教育培训</li>
+		<li>旅游出行</li>
+		<li>星座运势</li>
+		<li>服饰鞋包</li>
+		<li>母婴亲子</li>
+		<li>求职创业</li>
+		<li>汽车</li>
+		<li>游戏</li>
+		<li>生活服务</li>
+		<li>网络购物</li>
+		<li>花鸟萌宠</li>
+		<li>资讯</li>
+		<li>软件应用</li>
+		<li>金融财经</li>
+		<li>非汽车类机动车</li>
+		<li>餐饮美食</li>
+	</ul>
+	
+	<script>
+	alert('layout viewport:' + document.documentElement.clientWidth + '\n' + 'visual viewport:' + window.innerWidth + ' \n' + 'screen:' + window.screen.width + '\ndevicePixelRatio:' + window.devicePixelRatio + ' \nbody:' + getComputedStyle(document.body).width);
+	var body = document.body;
+
+	// body.style.cssText += 'font-size:' + 20 * (window.screen.width / 320) + 'px';
+	</script>
+</body>
+</html>

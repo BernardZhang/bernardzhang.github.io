@@ -1,0 +1,87 @@
+body {
+  background: #eee;
+}
+
+a {
+  -webkit-transform: translate(50%);
+          transform: translate(50%);
+}
+
+.flex {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.item {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          -webkit-flex: 1;: 1;
+-ms-flex: 1;: 1;
+        -webkit-flex: 1;  -ms-flex: 1;  flex: 1;
+}
+
+.twinkle {
+  animate: shan;
+}
+
+a {
+  transfrom: ratate(30deg);
+}
+
+#nav {
+  -webkit-transform: translate(10);
+          transform: translate(10);
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-animation: twinkle;
+                  animation: twinkle;
+}
+
+.hello {
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
+}
+
+* {
+  position: absolute;
+  margin: 0; padding: 0;
+}
+
+input[type="text"] {
+  border: 1px solid #ddd;
+  padding: 6px;
+  font-size: 18px;
+  width: 200px;
+  text-transform: uppercase;
+  top: 30px;
+  left: 130px;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 100px;
+  border: 0;
+  line-height: 35px;
+  height: 35px;
+  color: #fff;
+  background: mediumpurple;
+  font-size: 18px;
+  top: 30px;
+  left: 350px;
+  cursor: pointer;
+}
+
+form {
+  width: 600px;
+  height: 100px;
+}
+
+.item {
+  border-radius: 5px;
+}
+
+.box {
+  border-radius: 1px;
+}
